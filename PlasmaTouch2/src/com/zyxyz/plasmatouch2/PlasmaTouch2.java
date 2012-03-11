@@ -36,14 +36,15 @@ public class PlasmaTouch2 extends Activity
         //Instead use a smaller region.
         //I find that this makes the animation smoother
         //on the Notion Ink Adam.
-        if (metrics.heightPixels > 800)
+        if (metrics.heightPixels > 800)//we are using the portrait mode always
         {
             LinearLayout ll_root = new LinearLayout(this);
             ll_root.setOrientation(LinearLayout.VERTICAL);
             ll_root.setGravity(Gravity.CENTER);
             ll_root.setLayoutParams(new LinearLayout.LayoutParams(
                         LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-            ll_root.addView(_gl_view, new LinearLayout.LayoutParams( 512, 512));
+            int sz = (metrics.widthPixels < 512) ? metrics.widthPixels : 512;
+            ll_root.addView(_gl_view, new LinearLayout.LayoutParams( sz, sz));
             setContentView(ll_root);
         }
         else
